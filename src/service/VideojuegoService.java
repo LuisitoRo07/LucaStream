@@ -22,5 +22,16 @@ public class VideojuegoService {
 		return videojuegoDao.leerFichero();
 	}
 	
+	public List<Videojuego> listarPorGenero(String genero) {
+		VideojuegoDao videojuegodao=new VideojuegoDao();
+		try {
+		List<Videojuego> videojuegos=videojuegodao.listarPorGenero(genero);
+		return videojuegos;
+		} catch (Exception e) {
+			System.out.println("Algo salio mal Service");
+			return null;
+		}
+	}
+	
 	
 }

@@ -49,6 +49,22 @@ public class VideojuegoDao {
 		//System.out.println(Videojuegos.isEmpty()); //prueba que se añade bien
 		return Videojuegos;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Videojuego> listarPorGenero(String genero) throws IOException {
+		List<Videojuego> videojuegos=new ArrayList<Videojuego>();
+		videojuegos=leerFichero();
+		List<Videojuego> videojuegosGenero= new ArrayList<Videojuego>();
+		try {
+			videojuegos.stream()
+					.filter(x -> x.getGenero().equals(genero))
+					.forEach(x -> videojuegosGenero.add(x));
+			return videojuegosGenero;
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
+	}
 }
 	
 	

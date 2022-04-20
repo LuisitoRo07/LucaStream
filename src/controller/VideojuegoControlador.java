@@ -47,6 +47,8 @@ public class VideojuegoControlador {
 					break;
 				case 2:
 					altaOption(sc, videojuegoService);
+				case 3:
+					System.out.println(videojuegoService.listarPorGenero("Platform"));
 				default: 
 					System.out.println("Opcion incorrecta. Marca una nueva opcion.");	
 			}
