@@ -45,10 +45,20 @@ public class VideojuegoControlador {
 				case 0:
 					seguir = false;
 					break;
+				case 1:
+					  try {
+						  System.out.println(videojuegoService.listarVideojuegos());
+						} catch (Exception e) {
+							System.out.println(e);
+							System.out.println("Se ha producido un error... - Controller");
+						}
+				    break;
 				case 2:
 					altaOption(sc, videojuegoService);
+					break;
 				case 3:
 					System.out.println(videojuegoService.listarPorGenero("Platform"));
+					break;
 				default: 
 					System.out.println("Opcion incorrecta. Marca una nueva opcion.");	
 			}
