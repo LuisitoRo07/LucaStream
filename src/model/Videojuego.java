@@ -8,6 +8,11 @@ public class Videojuego {
 	private int ano;
 	private String genero;
 	private String editor;
+	private double na_ventas;
+	private double eu_ventas;
+	private double jp_ventas;
+	private double otras_ventas;
+	private double global_ventas;
 
 	
 	public Videojuego() {
@@ -21,6 +26,11 @@ public class Videojuego {
 		this.ano = ano;
 		this.genero = genero;
 		this.editor = editor;
+		this.na_ventas = 0;
+		this.eu_ventas = 0;
+		this.jp_ventas = 0;
+		this.otras_ventas = 0;
+		this.global_ventas = 0;
 	}
 
 	public Videojuego(int rank, String nombre, String plataforma, int ano, String genero, String editor) {
@@ -31,9 +41,25 @@ public class Videojuego {
 		this.ano = ano;
 		this.genero = genero;
 		this.editor = editor;
+	
 	}
 
 
+	public Videojuego(int rank, String nombre, String plataforma, int ano, String genero, String editor,
+			double na_ventas, double eu_ventas, double jp_ventas, double otras_ventas, double global_ventas) {
+		super();
+		this.rank = rank;
+		this.nombre = nombre;
+		this.plataforma = plataforma;
+		this.ano = ano;
+		this.genero = genero;
+		this.editor = editor;
+		this.na_ventas = na_ventas;
+		this.eu_ventas = eu_ventas;
+		this.jp_ventas = jp_ventas;
+		this.otras_ventas = otras_ventas;
+		this.global_ventas = global_ventas;
+	}
 
 	public int getRank() {
 		return rank;
@@ -104,6 +130,46 @@ public class Videojuego {
 	}
 
 
+
+	public double getNa_ventas() {
+		return na_ventas;
+	}
+
+	public void setNa_ventas(double na_ventas) {
+		this.na_ventas = na_ventas;
+	}
+
+	public double getEu_ventas() {
+		return eu_ventas;
+	}
+
+	public void setEu_ventas(double eu_ventas) {
+		this.eu_ventas = eu_ventas;
+	}
+
+	public double getJp_ventas() {
+		return jp_ventas;
+	}
+
+	public void setJp_ventas(double jp_ventas) {
+		this.jp_ventas = jp_ventas;
+	}
+
+	public double getOtras_ventas() {
+		return otras_ventas;
+	}
+
+	public void setOtras_ventas(double otras_ventas) {
+		this.otras_ventas = otras_ventas;
+	}
+
+	public double getGlobal_ventas() {
+		return global_ventas;
+	}
+
+	public void setGlobal_ventas(double global_ventas) {
+		this.global_ventas = global_ventas;
+	}
 
 	@Override
 	public String toString() {

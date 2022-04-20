@@ -14,13 +14,13 @@ public class VideojuegoControlador {
 		System.out.println("Introduzca el nombre del Videojuego:");
 		String nombre = sc.next();
 		System.out.println("--------------------------------------------------------------");
-		System.out.println("Introduzca el año de publicación del Videojuego:");
+		System.out.println("Introduzca el aï¿½o de publicaciï¿½n del Videojuego:");
 		int year = sc.nextInt();
 		System.out.println("--------------------------------------------------------------");
-		System.out.println("Introduzca la plataforma para la que está creado el Videojuego:");
+		System.out.println("Introduzca la plataforma para la que estï¿½ creado el Videojuego:");
 		String plataforma = sc.next();
 		System.out.println("--------------------------------------------------------------");
-		System.out.println("Introduzca el género del Videojuego:");
+		System.out.println("Introduzca el gï¿½nero del Videojuego:");
 		String gender = sc.next();
 		System.out.println("Introduzca el publisher:");
 		String publisher = sc.next();
@@ -33,12 +33,17 @@ public class VideojuegoControlador {
 	
 	public static void menu(VideojuegoService videojuegoService) {
 		
+		
 		boolean seguir = true;
 		int opcion=0;
 		Scanner sc = new Scanner (System.in);
 		while(seguir) {
 			
 			System.out.println("Elige una opcion:");
+			System.out.println("1-- Listar todos los videojuegos");
+			System.out.println("2-- AÃ±adir un nuevo videojuego ");
+			System.out.println("3-- Informe de videojuegos con gÃ©nero: 'Plataforma'");
+			System.out.println("0-- Salir del programa ");
 			opcion = sc.nextInt();
 			switch(opcion) {
 				
@@ -64,7 +69,7 @@ public class VideojuegoControlador {
 			}
 			
 		}
-		System.out.println("Fin de programa. ¡Hasta pronto!");
+		System.out.println("Fin de programa. ï¿½Hasta pronto!");
 	}
 	
 	
