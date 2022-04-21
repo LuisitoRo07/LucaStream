@@ -177,10 +177,4 @@ public class Videojuego {
 				+ ", genero=" + genero + ", editor=" + editor + "]";
 	}
 
-
-	
-	
-	
-	
-	
 }
