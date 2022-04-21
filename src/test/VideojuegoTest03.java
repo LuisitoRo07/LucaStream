@@ -27,6 +27,7 @@ public class VideojuegoTest03 {
 
 	@Test
 	public void testListar() {
+		System.out.println("Test de listar");
 		VideojuegoService videojuegoService = new VideojuegoService();
 		List<Videojuego> resultado = videojuegoService.listarVideojuegos();
 		Assert.assertNotNull("Comprobando que no es NULL", resultado);
@@ -35,6 +36,7 @@ public class VideojuegoTest03 {
 
 	@Test
 	public void testGeneroPlat() {
+		System.out.println("Test informe genero platform");
 		List<Videojuego> resul = videojuegosService.listarPorGenero("Platform");
 		Videojuego esp = new Videojuego (2,"Super Mario Bros.","NES",1985,"Platform","Nintendo");
 		Assert.assertEquals(esp.getNombre(), resul.get(0).getNombre());
@@ -42,6 +44,7 @@ public class VideojuegoTest03 {
 	
 	@Test
 	public void testEditorNintendo() {
+		System.out.println("Test informe editor Nintendo");
 		List<Videojuego> resul = videojuegosService.listarPorEditor("Nintendo");
 		Videojuego esp = new Videojuego (1,"Wii Sports","Wii",2006,"Sports","Nintendo");
 		Assert.assertEquals(esp.getNombre(), resul.get(0).getNombre());
@@ -49,6 +52,7 @@ public class VideojuegoTest03 {
 	
 	@Test
 	public void testJuegoSigloXX() {
+		System.out.println("Test informe siglo XX");
 		List<Videojuego> resul = videojuegosService.listarJuegosSigloXX();
 		Videojuego esp = new Videojuego (2,"Super Mario Bros.","NES",1985,"Platform","Nintendo");
 		Assert.assertEquals(esp.getNombre(), resul.get(0).getNombre());
@@ -68,8 +72,7 @@ public class VideojuegoTest03 {
 		System.out.println("Probando test edicion y borrado");
 		//Creamos un nuevo objeto Videojuego
 		VideojuegoDao videojuegoDao = new VideojuegoDao();
-		Videojuego v1 = new Videojuego(999999, "Prueba", "Prueba", 9999, "Prueba", "Prueba",
-				0, 0, 0, 0, 0);
+		Videojuego v1 = new Videojuego("Prueba", "Prueba", 9999, "Prueba", "Prueba");
 		//Le damos de alta
 		videojuegoDao.altaVideojuego(v1);
 		//leemos el fichero
@@ -87,14 +90,14 @@ public class VideojuegoTest03 {
 		}
 		
 		//Borramos la insercion de prueba
-		boolean resultado3 = videojuegoDao.borrarVideojuego(v1.getRank());
+		boolean resultado3 = videojuegoDao.borrarVideojuego(v3.getRank());
 		//leemos el fichero
 		lista = videojuegoDao.leerFichero();
 		//Comprobamos que se ha borrado
 		boolean resultado4 = true;
 		for (Videojuego v : lista) {
-			if (v.getRank() == v1.getRank()) {
-				resultado2 = false;
+			if (v.getRank() == v3.getRank()) {
+				resultado4 = false;
 				break;
 			}
 		}
@@ -114,23 +117,7 @@ public class VideojuegoTest03 {
 		List<Videojuego> lista1 = videojuegoDao.leerFichero();
 		videojuegoDao.guardarFichero();
 		List<Videojuego> lista2 = videojuegoDao.leerFichero();
-		boolean resultado1 = false;
-		if(lista1.size() == lista2.size()) {
-			resultado1 = true;
-		}
-		boolean resultado2 = true;
-		for(int i = 0; i < lista1.size(); i++) {
-			if(!lista1.get(i).equals(lista2.get(i))) {
-				resultado2 = false;
-				break;
-			}
-		}
-		boolean res_final = false;
-		if(resultado1 && resultado2) {
-			res_final = true;
-		}
 		
-		System.out.println(resultado2);
-		Assert.assertFalse("Comprobando la reescritura del fichero", res_final);
+		Assert.assertFalse("Comprobando la reescritura del fichero", lista1.size()!=lista2.size());
 	}
 }

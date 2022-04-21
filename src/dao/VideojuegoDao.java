@@ -93,10 +93,10 @@ public class VideojuegoDao {
 	public boolean borrarVideojuego(int rank) {
 		try {
 			Videojuegos = leerFichero(); //Leo el csv y creo el array
-			int size1 = Videojuegos.size();
+			//int size1 = Videojuegos.size();
 			Videojuegos.stream().filter(v -> v.getRank()==rank).forEach(v -> Videojuegos.remove(v));//Filtro y quito ese
-			System.out.println("Se hace bien el borrado?");
-			System.out.println(size1 - 1 == Videojuegos.size());
+			/*System.out.println("Se hace bien el borrado?");
+			System.out.println(size1 - 1 == Videojuegos.size());*/
 			guardarFichero();
 			return true;
 		}catch (Exception e) {
@@ -209,7 +209,6 @@ public class VideojuegoDao {
 				bw.write(",");
 				bw.write(Double.toString(v.getGlobal_ventas()));
 				bw.newLine();
-				System.out.println(v);
 			}
 
 			bw.close();
