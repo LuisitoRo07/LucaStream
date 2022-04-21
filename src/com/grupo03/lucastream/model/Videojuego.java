@@ -1,4 +1,4 @@
-package model;
+package com.grupo03.lucastream.model;
 
 public class Videojuego {
 

@@ -1,11 +1,11 @@
-package service;
+package com.grupo03.lucastream.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.VideojuegoDao;
-import model.Videojuego;
+import com.grupo03.lucastream.dao.VideojuegoDao;
+import com.grupo03.lucastream.model.Videojuego;
 
 public class VideojuegoService {
 
@@ -68,7 +68,7 @@ public class VideojuegoService {
 		}
 	}
 
-	// Se llama a la función listarJuegosSigloXX() de la Capa DAO y devolvemos el resultado
+	// Se llama a la funciï¿½n listarJuegosSigloXX() de la Capa DAO y devolvemos el resultado
 	public List<Videojuego> listarJuegosSigloXX() {
 		VideojuegoDao videojuegodao = new VideojuegoDao();
 		try {

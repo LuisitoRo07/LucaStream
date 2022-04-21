@@ -8,9 +8,9 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import dao.VideojuegoDao;
-import model.Videojuego;
-import service.VideojuegoService;
+import com.grupo03.lucastream.dao.VideojuegoDao;
+import com.grupo03.lucastream.model.Videojuego;
+import com.grupo03.lucastream.service.VideojuegoService;
 
 public class VideojuegoTest03 {
 	//GIVEN

@@ -1,6 +1,4 @@
-package dao;
-
-import model.Videojuego;
+package com.grupo03.lucastream.dao;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,6 +8,8 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import com.grupo03.lucastream.model.Videojuego;
 
 import java.io.IOException;
 
@@ -22,6 +22,7 @@ public class VideojuegoDao {
 
 	public List<Videojuego> leerFichero() {
 		BufferedReader br = null;
+		Videojuegos.clear();
 		try {
 			// Declaramos la variable br que contendra el csv.
 			br = new BufferedReader(new FileReader("data/vgsales.csv"));
@@ -57,6 +58,8 @@ public class VideojuegoDao {
 
 	public boolean existeVideojuego(int rank) {
 		//recibe un id y comprueba que existe (que hay algun match). Si hay devuelve true sino devuelve false
+		//return Videojuegos.stream().anyMatch(v -> v.getRank()==rank);
+		Videojuegos = leerFichero();
 		return Videojuegos.stream().anyMatch(v -> v.getRank()==rank);
 	}
 	
@@ -92,11 +95,24 @@ public class VideojuegoDao {
 
 	public boolean borrarVideojuego(int rank) {
 		try {
-			Videojuegos = leerFichero(); //Leo el csv y creo el array
+			//Videojuegos = leerFichero(); //Leo el csv y creo el array
 			//int size1 = Videojuegos.size();
-			Videojuegos.stream().filter(v -> v.getRank()==rank).forEach(v -> Videojuegos.remove(v));//Filtro y quito ese
+			//Videojuegos.stream().filter(v -> v.getRank()==rank).forEach(v -> Videojuegos.remove(v));//Filtro y quito ese
 			/*System.out.println("Se hace bien el borrado?");
 			System.out.println(size1 - 1 == Videojuegos.size());*/
+			
+			List<Videojuego> videojuegos = new ArrayList<Videojuego>();
+			videojuegos = leerFichero();
+
+			for (int i = 0; i < videojuegos.size(); i++) {
+				if (videojuegos.get(i).getRank() == rank) {
+					videojuegos.remove(i);
+					break;
+				}
+			}
+			
+			Videojuegos = videojuegos;
+			
 			guardarFichero();
 			return true;
 		}catch (Exception e) {
@@ -120,7 +136,7 @@ public class VideojuegoDao {
 		}
 	}
 
-	// Filtramos por el editor que le pasemos a la función en el controlador
+	// Filtramos por el editor que le pasemos a la funciï¿½n en el controlador
 	@SuppressWarnings("unchecked")
 	public List<Videojuego> listarPorEditor(String editor) {
 		List<Videojuego> videojuegos = new ArrayList<Videojuego>();
@@ -135,7 +151,7 @@ public class VideojuegoDao {
 		}
 	}
 
-	// Filtramos el año para que salgan juegos del Siglo XX
+	// Filtramos el aï¿½o para que salgan juegos del Siglo XX
 	@SuppressWarnings("unchecked")
 	public List<Videojuego> listarJuegosSigloXX() {
 		List<Videojuego> videojuegos = new ArrayList<Videojuego>();
@@ -225,7 +241,7 @@ public class VideojuegoDao {
 		try {
 			List<Videojuego> videojuegos = new ArrayList<Videojuego>();
 			videojuegos = leerFichero();
-
+			
 			for (int i = 0; i < videojuegos.size(); i++) {
 				if (videojuegos.get(i).getRank() == videojuego.getRank()) {
 					videojuegos.set(i, videojuego);

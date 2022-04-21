@@ -1,9 +1,12 @@
-package controller;
+package com.grupo03.lucastream.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-import model.Videojuego;
-import service.VideojuegoService;
+import com.grupo03.lucastream.model.Videojuego;
+import com.grupo03.lucastream.service.VideojuegoService;
 
 public class VideojuegoControlador {
 
@@ -89,7 +92,6 @@ public class VideojuegoControlador {
 
 			Videojuego v = new Videojuego(rank, nombre, plataforma, year, gender, publisher, NA_Sales, EU_Sales,
 					JP_Sales, Other_Sales, Global_Sales);
-			v.setRank(rank);
 			if (videojuegoService.editarVideojuego(v)) {
 				return true;
 			} else {
@@ -108,12 +110,12 @@ public class VideojuegoControlador {
 
 	public static void menu(VideojuegoService videojuegoService) {
 		
+		List<Videojuego> lista = new ArrayList<Videojuego>();
 		
 		boolean seguir = true;
 		int opcion=0;
 		Scanner sc = new Scanner (System.in);
 		while(seguir) {
-			
 			System.out.println("Elige una opción:");
 			System.out.println("1-- Listar todos los videojuegos");
 			System.out.println("2-- Añadir un nuevo videojuego ");
@@ -131,7 +133,10 @@ public class VideojuegoControlador {
 					break;
 				case 1:
 					  try {
-						  System.out.println(videojuegoService.listarVideojuegos());
+						  lista = videojuegoService.listarVideojuegos();
+						  for (Videojuego videojuego : lista) {
+								System.out.println(videojuego);
+							}
 						} catch (Exception e) {
 							System.out.println(e);
 							System.out.println("Se ha producido un error... - Controller");
@@ -141,13 +146,22 @@ public class VideojuegoControlador {
 					altaOption(sc, videojuegoService);
 					break;
 				case 3:
-					System.out.println(videojuegoService.listarPorGenero("Platform"));
+					lista = videojuegoService.listarPorGenero("Platform");
+					for (Videojuego videojuego : lista) {
+						System.out.println(videojuego);
+					}
 					break;
 				case 4:
-					System.out.println(videojuegoService.listarPorEditor("Nintendo"));
+					lista = videojuegoService.listarPorEditor("Nintendo");
+					for (Videojuego videojuego : lista) {
+						System.out.println(videojuego);
+					}
 					break;
 				case 5:
-					System.out.println(videojuegoService.listarJuegosSigloXX());
+					lista = videojuegoService.listarJuegosSigloXX();
+					for (Videojuego videojuego : lista) {
+						System.out.println(videojuego);
+					}
 					break;
 				case 6:
 					if (editarVideojuego(sc, videojuegoService)) {
@@ -173,7 +187,7 @@ public class VideojuegoControlador {
 	public static void main(String[] args) {
 
 		VideojuegoService videojuegoService = new VideojuegoService();
-
+		
 		menu(videojuegoService);
 	}
 
