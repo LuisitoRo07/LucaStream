@@ -37,10 +37,21 @@ public class VideojuegoTest03 {
 	@Test
 	public void testGeneroPlat() {
 		List<Videojuego> resul = videojuegosService.listarPorGenero("Platform");
-		System.out.println(resul.get(0));
-		Videojuego esp = new Videojuego ();
-		esp = resul.get(0);
-		System.out.println(esp);
+		Videojuego esp = new Videojuego (2,"Super Mario Bros.","NES",1985,"Platform","Nintendo");
+		Assert.assertEquals(esp.getNombre(), resul.get(0).getNombre());
+	}
+	
+	@Test
+	public void testEditorNintendo() {
+		List<Videojuego> resul = videojuegosService.listarPorEditor("Nintendo");
+		Videojuego esp = new Videojuego (1,"Wii Sports","Wii",2006,"Sports","Nintendo");
+		Assert.assertEquals(esp.getNombre(), resul.get(0).getNombre());
+	}
+	
+	@Test
+	public void testJuegoSigloXX() {
+		List<Videojuego> resul = videojuegosService.listarJuegosSigloXX();
+		Videojuego esp = new Videojuego (2,"Super Mario Bros.","NES",1985,"Platform","Nintendo");
 		Assert.assertEquals(esp.getNombre(), resul.get(0).getNombre());
 	}
 }

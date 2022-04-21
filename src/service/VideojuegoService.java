@@ -49,4 +49,28 @@ public class VideojuegoService {
 		}
 	}
 
+	// Se llama a la funcion listarPorEditor() de la Capa DAO y devolvemos el resultado
+	public List<Videojuego> listarPorEditor(String editor) {
+		VideojuegoDao videojuegodao = new VideojuegoDao();
+		try {
+			List<Videojuego> videojuegos = videojuegodao.listarPorEditor(editor);
+			return videojuegos;
+		} catch (Exception e) {
+			System.out.println("Algo salio mal Service");
+			return null;
+		}
+	}
+
+	// Se llama a la función listarJuegosSigloXX() de la Capa DAO y devolvemos el resultado
+	public List<Videojuego> listarJuegosSigloXX() {
+		VideojuegoDao videojuegodao = new VideojuegoDao();
+		try {
+			List<Videojuego> videojuegos = videojuegodao.listarJuegosSigloXX();
+			return videojuegos;
+		} catch (Exception e) {
+			System.out.println("Algo salio mal Service");
+			return null;
+		}
+	}
+
 }

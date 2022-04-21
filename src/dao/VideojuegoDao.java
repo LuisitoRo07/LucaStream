@@ -73,7 +73,8 @@ public class VideojuegoDao {
 	}
 
 	public void altaVideojuego(Videojuego v) {
-		// simplemente aï¿½adimos el videojuego al array Videojuegos y luego devolvemos el
+		// simplemente aï¿½adimos el videojuego al array Videojuegos y luego devolvemos
+		// el
 		// array modificado
 		// System.out.println(Videojuegos.isEmpty()); //prueba para ver que esta vacï¿½o
 		Videojuegos = leerFichero();
@@ -81,7 +82,7 @@ public class VideojuegoDao {
 		Videojuegos.add(v);
 		// System.out.println(Videojuegos.isEmpty()); //prueba que se aï¿½ade bien
 		guardarFichero();
-		
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -92,6 +93,37 @@ public class VideojuegoDao {
 		try {
 			videojuegos.stream().filter(x -> x.getGenero().equals(genero)).forEach(x -> videojuegosGenero.add(x));
 			return videojuegosGenero;
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
+	}
+
+	// Filtramos por el editor que le pasemos a la función en el controlador
+	@SuppressWarnings("unchecked")
+	public List<Videojuego> listarPorEditor(String editor) {
+		List<Videojuego> videojuegos = new ArrayList<Videojuego>();
+		videojuegos = leerFichero();
+		List<Videojuego> videojuegosEditor = new ArrayList<Videojuego>();
+		try {
+			videojuegos.stream().filter(x -> x.getEditor().equals(editor)).forEach(x -> videojuegosEditor.add(x));
+			return videojuegosEditor;
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
+	}
+
+	// Filtramos el año para que salgan juegos del Siglo XX
+	@SuppressWarnings("unchecked")
+	public List<Videojuego> listarJuegosSigloXX() {
+		List<Videojuego> videojuegos = new ArrayList<Videojuego>();
+		videojuegos = leerFichero();
+		List<Videojuego> videojuegosSigloXX = new ArrayList<Videojuego>();
+		try {
+			videojuegos.stream().filter(x -> x.getAno() >= 1901 & x.getAno() <= 2000)
+					.forEach(x -> videojuegosSigloXX.add(x));
+			return videojuegosSigloXX;
 		} catch (Exception e) {
 			System.out.println(e);
 			return null;
@@ -158,11 +190,11 @@ public class VideojuegoDao {
 				bw.newLine();
 				System.out.println(v);
 			}
-				
+
 			bw.close();
 
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 

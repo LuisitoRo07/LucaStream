@@ -43,6 +43,8 @@ public class VideojuegoControlador {
 			System.out.println("1-- Listar todos los videojuegos");
 			System.out.println("2-- Añadir un nuevo videojuego ");
 			System.out.println("3-- Informe de videojuegos con género: 'Plataforma'");
+			System.out.println("4-- Informe de videojuegos con editor: 'Nintendo'");
+			System.out.println("5-- Informe de videojuegos del siglo XX");
 			System.out.println("0-- Salir del programa ");
 			opcion = sc.nextInt();
 			switch(opcion) {
@@ -63,6 +65,12 @@ public class VideojuegoControlador {
 					break;
 				case 3:
 					System.out.println(videojuegoService.listarPorGenero("Platform"));
+					break;
+				case 4:
+					System.out.println(videojuegoService.listarPorEditor("Nintendo"));
+					break;
+				case 5:
+					System.out.println(videojuegoService.listarJuegosSigloXX());
 					break;
 				default: 
 					System.out.println("Opcion incorrecta. Marca una nueva opcion.");	
