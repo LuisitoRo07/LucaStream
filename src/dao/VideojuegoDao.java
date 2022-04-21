@@ -227,7 +227,6 @@ public class VideojuegoDao {
 			List<Videojuego> videojuegos = new ArrayList<Videojuego>();
 			videojuegos = leerFichero();
 
-			System.out.println(videojuegos);
 			for (int i = 0; i < videojuegos.size(); i++) {
 				if (videojuegos.get(i).getRank() == videojuego.getRank()) {
 					videojuegos.set(i, videojuego);
