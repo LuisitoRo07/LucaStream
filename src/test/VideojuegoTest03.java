@@ -13,15 +13,18 @@ import model.Videojuego;
 import service.VideojuegoService;
 
 public class VideojuegoTest03 {
-
+	//GIVEN
 	VideojuegoService videojuegosService = new VideojuegoService();
 
 	@Test
 	public void testLeer() {
 		System.out.println("Probando test leer");
+		//GIVEN
 		VideojuegoDao videojuegoDao = new VideojuegoDao();
+		//WHEN
 		List<Videojuego> resultado = videojuegoDao.leerFichero();
 		System.out.println(resultado.isEmpty());
+		//THEN
 		Assert.assertFalse("Comprobando que no es NULL", resultado.isEmpty());
 	}
 
@@ -75,7 +78,7 @@ public class VideojuegoTest03 {
 		}
 		
 		//Borramos la insercion de prueba
-		boolean resultado3 = videojuegoDao.borrarVideojuego(v1.getRank());
+		videojuegoDao.borrarVideojuego(v1.getRank());
 		
 		Assert.assertFalse("Comprobando la Edicion y Borrado", resultado);
 	}
