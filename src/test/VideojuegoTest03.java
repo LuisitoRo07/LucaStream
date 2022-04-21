@@ -58,14 +58,6 @@ public class VideojuegoTest03 {
 		Assert.assertEquals(esp.getNombre(), resul.get(0).getNombre());
 	}
 	
-	@Test
-	public void tesListarEditor() {
-		System.out.println("Probando test editor");
-		VideojuegoDao videojuegoDao = new VideojuegoDao();
-		List<Videojuego> resultado = videojuegoDao.listarPorEditor("Nintendo");
-		System.out.println(resultado.isEmpty());
-		Assert.assertFalse("Comprobando que no es NULL", resultado.isEmpty());
-	}
 	
 	@Test
 	public void testEdicionyBorrado() {
@@ -111,7 +103,7 @@ public class VideojuegoTest03 {
 	}
 	
 	@Test
-	public void rescrituraFichero() {
+	public void testRescrituraFichero() {
 		System.out.println("Probando test reescritura");
 		VideojuegoDao videojuegoDao = new VideojuegoDao();
 		List<Videojuego> lista1 = videojuegoDao.leerFichero();
