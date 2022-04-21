@@ -79,5 +79,21 @@ public class VideojuegoService {
 			return null;
 		}
 	}
+	
+	public boolean editarVideojuego(Videojuego videojuego) {
+
+		try {
+			if (videojuegoDao.editarVideojuego(videojuego)) {
+				return true;
+			}else {
+				return false;
+			}
+			
+		} catch (Exception e) {
+			System.out.println("No se ha podido editar debido a un error...");
+			return false;
+		}
+
+	}
 
 }

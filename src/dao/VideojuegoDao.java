@@ -220,4 +220,28 @@ public class VideojuegoDao {
 		}
 
 	}
+	
+	public boolean editarVideojuego(Videojuego videojuego) {
+
+		try {
+			List<Videojuego> videojuegos = new ArrayList<Videojuego>();
+			videojuegos = leerFichero();
+
+			System.out.println(videojuegos);
+			for (int i = 0; i < videojuegos.size(); i++) {
+				if (videojuegos.get(i).getRank() == videojuego.getRank()) {
+					videojuegos.set(i, videojuego);
+					break;
+				}
+			}
+			
+			Videojuegos = videojuegos;
+
+			guardarFichero();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+		
+	}
 }
