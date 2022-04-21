@@ -58,6 +58,27 @@ public class VideojuegoTest03 {
 		Assert.assertEquals(esp.getNombre(), resul.get(0).getNombre());
 	}
 	
+	@Test
+	public void testAnadir() {
+		System.out.println("Probando test añadir");
+		//Creamos un nuevo objeto Videojuego
+		VideojuegoDao videojuegoDao = new VideojuegoDao();
+		Videojuego v1 = new Videojuego("Prueba", "Prueba", 9999, "Prueba", "Prueba");
+		//Le damos de alta
+		videojuegoDao.altaVideojuego(v1);
+		//leemos el fichero
+		List<Videojuego> lista = videojuegoDao.leerFichero();
+		//Comprobamos que se añadio
+		boolean resultado = false;
+		if(lista.get(lista.size()-1).getRank() == v1.getRank()){
+			resultado = true;
+		}
+		
+		//Borramos la insercion de prueba
+		boolean resultado3 = videojuegoDao.borrarVideojuego(v1.getRank());
+		
+		Assert.assertFalse("Comprobando la Edicion y Borrado", resultado);
+	}
 	
 	@Test
 	public void testEdicionyBorrado() {
