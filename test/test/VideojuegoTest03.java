@@ -13,8 +13,7 @@ import com.grupo03.lucastream.model.Videojuego;
 import com.grupo03.lucastream.service.VideojuegoService;
 
 public class VideojuegoTest03 {
-	//GIVEN
-	VideojuegoService videojuegosService = new VideojuegoService();
+	
 
 	@Test
 	public void testLeer() {
@@ -31,8 +30,11 @@ public class VideojuegoTest03 {
 	@Test
 	public void testListar() {
 		System.out.println("Test de listar");
+		//GIVEN
 		VideojuegoService videojuegoService = new VideojuegoService();
+		//WHEN
 		List<Videojuego> resultado = videojuegoService.listarVideojuegos();
+		//THEN
 		Assert.assertNotNull("Comprobando que no es NULL", resultado);
 		
 	}
@@ -40,33 +42,49 @@ public class VideojuegoTest03 {
 	@Test
 	public void testGeneroPlat() {
 		System.out.println("Test informe genero platform");
+		//GIVEN
+		VideojuegoService videojuegosService = new VideojuegoService();
+		//WHEN
 		List<Videojuego> resul = videojuegosService.listarPorGenero("Platform");
 		Videojuego esp = new Videojuego (2,"Super Mario Bros.","NES",1985,"Platform","Nintendo");
+		//THEN
 		Assert.assertEquals(esp.getNombre(), resul.get(0).getNombre());
 	}
 	
 	@Test
 	public void testEditorNintendo() {
 		System.out.println("Test informe editor Nintendo");
+		//GIVEN
+		VideojuegoService videojuegosService = new VideojuegoService();
+		//WHEN
 		List<Videojuego> resul = videojuegosService.listarPorEditor("Nintendo");
 		Videojuego esp = new Videojuego (1,"Wii Sports","Wii",2006,"Sports","Nintendo");
+		//THEN
 		Assert.assertEquals(esp.getNombre(), resul.get(0).getNombre());
 	}
 	
 	@Test
 	public void testJuegoSigloXX() {
 		System.out.println("Test informe siglo XX");
+		//GIVEN
+		VideojuegoService videojuegosService = new VideojuegoService();
+		//WHEN
 		List<Videojuego> resul = videojuegosService.listarJuegosSigloXX();
 		Videojuego esp = new Videojuego (2,"Super Mario Bros.","NES",1985,"Platform","Nintendo");
+		//THEN
 		Assert.assertEquals(esp.getNombre(), resul.get(0).getNombre());
 	}
 	
 	@Test
 	public void testAnadir() {
 		System.out.println("Probando test añadir");
+		
+		//GIVEN
 		//Creamos un nuevo objeto Videojuego
 		VideojuegoDao videojuegoDao = new VideojuegoDao();
 		Videojuego v1 = new Videojuego("Prueba", "Prueba", 9999, "Prueba", "Prueba");
+		
+		//WHEN
 		//Le damos de alta
 		videojuegoDao.altaVideojuego(v1);
 		//leemos el fichero
@@ -76,19 +94,22 @@ public class VideojuegoTest03 {
 		if(lista.get(lista.size()-1).getRank() == v1.getRank()){
 			resultado = true;
 		}
-		
 		//Borramos la insercion de prueba
 		videojuegoDao.borrarVideojuego(v1.getRank());
 		
-		Assert.assertFalse("Comprobando la Edicion y Borrado", resultado);
+		//THEN
+		Assert.assertTrue("Comprobando la Edicion y Borrado", resultado);
 	}
 	
 	@Test
 	public void testEdicionyBorrado() {
 		System.out.println("Probando test edicion y borrado");
+		//GIVEN
 		//Creamos un nuevo objeto Videojuego
 		VideojuegoDao videojuegoDao = new VideojuegoDao();
 		Videojuego v1 = new Videojuego("Prueba", "Prueba", 9999, "Prueba", "Prueba");
+		
+		//WHEN
 		//Le damos de alta
 		videojuegoDao.altaVideojuego(v1);
 		//leemos el fichero
@@ -104,7 +125,6 @@ public class VideojuegoTest03 {
 		if(lista.get(lista.size()-1).getNombre().equals("Comprobacion")){
 			resultado2 = true;
 		}
-		
 		//Borramos la insercion de prueba
 		boolean resultado3 = videojuegoDao.borrarVideojuego(v3.getRank());
 		//leemos el fichero
@@ -117,23 +137,28 @@ public class VideojuegoTest03 {
 				break;
 			}
 		}
-		
 		//Comprobamos que todas las respuestas anteriores son correctas
 		boolean res_final = false;
 		if(resultado && resultado2 && resultado3 && resultado4) {
 			res_final = true;
 		}
-		Assert.assertFalse("Comprobando la Edicion y Borrado", res_final);
+		
+		//THEN
+		Assert.assertTrue("Comprobando la Edicion y Borrado", res_final);
 	}
 	
 	@Test
 	public void testRescrituraFichero() {
 		System.out.println("Probando test reescritura");
+		//GIVEN
 		VideojuegoDao videojuegoDao = new VideojuegoDao();
+		
+		//WHEN
 		List<Videojuego> lista1 = videojuegoDao.leerFichero();
 		videojuegoDao.guardarFichero();
 		List<Videojuego> lista2 = videojuegoDao.leerFichero();
 		
+		//THEN
 		Assert.assertFalse("Comprobando la reescritura del fichero", lista1.size()!=lista2.size());
 	}
 }
