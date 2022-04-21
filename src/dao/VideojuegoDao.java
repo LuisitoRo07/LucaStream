@@ -55,6 +55,11 @@ public class VideojuegoDao {
 		return Videojuegos;
 	}
 
+	public boolean existeVideojuego(int rank) {
+		//recibe un id y comprueba que existe (que hay algun match). Si hay devuelve true sino devuelve false
+		return Videojuegos.stream().anyMatch(v -> v.getRank()==rank);
+	}
+	
 	public List<Videojuego> listarVideojuegos() {
 
 		List<Videojuego> videojuegos = new ArrayList<Videojuego>();
@@ -85,6 +90,22 @@ public class VideojuegoDao {
 
 	}
 
+	public boolean borrarVideojuego(int rank) {
+		try {
+			Videojuegos = leerFichero(); //Leo el csv y creo el array
+			int size1 = Videojuegos.size();
+			Videojuegos.stream().filter(v -> v.getRank()==rank).forEach(v -> Videojuegos.remove(v));//Filtro y quito ese
+			System.out.println("Se hace bien el borrado?");
+			System.out.println(size1 - 1 == Videojuegos.size());
+			guardarFichero();
+			return true;
+		}catch (Exception e) {
+			System.out.println(e);
+			System.out.println("Se ha producido un error... - VideojuegoDao");
+			return false;
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Videojuego> listarPorGenero(String genero) {
 		List<Videojuego> videojuegos = new ArrayList<Videojuego>();

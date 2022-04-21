@@ -11,10 +11,17 @@ public class VideojuegoService {
 
 	VideojuegoDao videojuegoDao = new VideojuegoDao();
 
+	public boolean  existeVideojuego(int rank) {
+		return videojuegoDao.existeVideojuego(rank);
+	}
+	
 	public void altaVideojuego(Videojuego v) {
 		videojuegoDao.altaVideojuego(v);
 	}
 
+	public boolean borrarVideojuego(int rank) {
+		return videojuegoDao.borrarVideojuego(rank);}
+	
 	public List<Videojuego> leerCSV() throws IOException {
 
 		VideojuegoDao videojuegoDao = new VideojuegoDao();

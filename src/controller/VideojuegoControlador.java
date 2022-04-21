@@ -30,6 +30,28 @@ public class VideojuegoControlador {
 		videojuegoService.altaVideojuego(v);
 			
 	}
+	public static void deleteOption(Scanner sc, VideojuegoService videojuegoService) {
+		System.out.println("--------------------------------------------------------------");
+		System.out.println("Introduzca el numero correspondiente al rank o id del videojuego que desea eliminar:");
+		int rank = sc.nextInt();
+		boolean done = false;
+		
+		if (videojuegoService.existeVideojuego(rank)) {
+			done = borrarVideojuego(rank, videojuegoService);
+		}else {
+			System.out.println("El rango o id introducido no se corresponde con ningun videojuego");
+		}
+		
+		if (done) {
+			System.out.println("Videojuego eliminado correctamente");
+		}else {
+			System.out.println("Fallo al eliminar videojuego");
+		}
+	}
+	
+	public static boolean borrarVideojuego(int rank, VideojuegoService videojuegoService) {
+		return videojuegoService.borrarVideojuego(rank);
+	}
 	
 	public static void menu(VideojuegoService videojuegoService) {
 		
