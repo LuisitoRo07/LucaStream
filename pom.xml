@@ -13,6 +13,19 @@
           <release>17</release>
         </configuration>
       </plugin>
+      <plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-jar-plugin</artifactId>
+	<version>2.4</version>
+	<configuration>
+	<archive>
+	<index>true</index>
+	<manifest>
+	<mainClass>com.lucasteam.controller.Main</mainClass>
+	</manifest>
+	</archive>
+	</configuration>
+	</plugin>   
     </plugins>
   </build>
   <properties>
