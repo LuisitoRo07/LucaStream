@@ -21,7 +21,7 @@
 	<archive>
 	<index>true</index>
 	<manifest>
-	<mainClass>src/com.grupo03.lucastream.Main</mainClass>
+	<mainClass>com.grupo03.lucastream.Main</mainClass>
 	</manifest>
 	</archive>
 	</configuration>
