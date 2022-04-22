@@ -3,5 +3,5 @@ services:
     contenedor_videojuego:
       container_name: contenedor_videojuego
       build: .
-  
-    
+      restart: on-failure
+      command: ["sleep","infinity"]
