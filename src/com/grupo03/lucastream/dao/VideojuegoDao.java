@@ -23,6 +23,16 @@ public class VideojuegoDao {
 
 	List<Videojuego> Videojuegos = new ArrayList<Videojuego>();
 
+	public static String esNumerico(String str) {
+		try {
+			//Integer.parseInt(str);
+			Double.parseDouble(str);
+			return str;
+		} catch (NumberFormatException e) {
+			return "-1";
+		}
+	}
+
 	public List<Videojuego> leerFichero() {
 		BufferedReader br = null;
 		Videojuegos.clear();
@@ -36,16 +46,18 @@ public class VideojuegoDao {
 			// Recorremos linea por linea toda la variable br.
 			while (null != line) {
 				String[] fields = line.split(SEPARATOR);
-				Videojuego videojuego1 = new Videojuego(Integer.parseInt(fields[0]), fields[1], fields[2],
-						Integer.parseInt(fields[3]), fields[4], fields[5], Double.parseDouble(fields[6]),
-						Double.parseDouble(fields[7]), Double.parseDouble(fields[8]), Double.parseDouble(fields[9]),
-						Double.parseDouble(fields[10]));
+
+				Videojuego videojuego1 = new Videojuego(Integer.parseInt(esNumerico(fields[0])), fields[1], fields[2],
+						Integer.parseInt(esNumerico(fields[3])), fields[4], fields[5], Double.parseDouble(esNumerico(fields[6])),
+						Double.parseDouble(esNumerico(fields[7])), Double.parseDouble(esNumerico(fields[8])),
+						Double.parseDouble(esNumerico(fields[9])), Double.parseDouble(esNumerico(fields[10])));
 
 				Videojuegos.add(videojuego1);
 				line = br.readLine();
 			}
 
 		} catch (Exception e) {
+			System.out.println(e);
 		} finally {
 			if (null != br) {
 				try {
@@ -90,7 +102,8 @@ public class VideojuegoDao {
 		// array modificado
 		// System.out.println(Videojuegos.isEmpty()); //prueba para ver que esta vac�o
 		Videojuegos = leerFichero();
-		v.setRank(Videojuegos.size() + 1);// antes de a�adir el videojuego automatizo el rank o id
+		//v.setRank(Videojuegos.size() + 1);// antes de a�adir el videojuego automatizo el rank o id
+		v.setRank(Videojuegos.get(Videojuegos.size()-1).getRank() + 1);
 		Videojuegos.add(v);
 		// System.out.println(Videojuegos.isEmpty()); //prueba que se a�ade bien
 		guardarFichero();
