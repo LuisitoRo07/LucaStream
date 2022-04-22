@@ -7,7 +7,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.grupo03.lucastream.model.Videojuego;
 
@@ -57,12 +60,13 @@ public class VideojuegoDao {
 	}
 
 	public boolean existeVideojuego(int rank) {
-		//recibe un id y comprueba que existe (que hay algun match). Si hay devuelve true sino devuelve false
-		//return Videojuegos.stream().anyMatch(v -> v.getRank()==rank);
+		// recibe un id y comprueba que existe (que hay algun match). Si hay devuelve
+		// true sino devuelve false
+		// return Videojuegos.stream().anyMatch(v -> v.getRank()==rank);
 		Videojuegos = leerFichero();
-		return Videojuegos.stream().anyMatch(v -> v.getRank()==rank);
+		return Videojuegos.stream().anyMatch(v -> v.getRank() == rank);
 	}
-	
+
 	public List<Videojuego> listarVideojuegos() {
 
 		List<Videojuego> videojuegos = new ArrayList<Videojuego>();
@@ -95,12 +99,15 @@ public class VideojuegoDao {
 
 	public boolean borrarVideojuego(int rank) {
 		try {
-			//Videojuegos = leerFichero(); //Leo el csv y creo el array
-			//int size1 = Videojuegos.size();
-			//Videojuegos.stream().filter(v -> v.getRank()==rank).forEach(v -> Videojuegos.remove(v));//Filtro y quito ese
-			/*System.out.println("Se hace bien el borrado?");
-			System.out.println(size1 - 1 == Videojuegos.size());*/
-			
+			// Videojuegos = leerFichero(); //Leo el csv y creo el array
+			// int size1 = Videojuegos.size();
+			// Videojuegos.stream().filter(v -> v.getRank()==rank).forEach(v ->
+			// Videojuegos.remove(v));//Filtro y quito ese
+			/*
+			 * System.out.println("Se hace bien el borrado?"); System.out.println(size1 - 1
+			 * == Videojuegos.size());
+			 */
+
 			List<Videojuego> videojuegos = new ArrayList<Videojuego>();
 			videojuegos = leerFichero();
 
@@ -110,18 +117,18 @@ public class VideojuegoDao {
 					break;
 				}
 			}
-			
+
 			Videojuegos = videojuegos;
-			
+
 			guardarFichero();
 			return true;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println(e);
 			System.out.println("Se ha producido un error... - VideojuegoDao");
 			return false;
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Videojuego> listarPorGenero(String genero) {
 		List<Videojuego> videojuegos = new ArrayList<Videojuego>();
@@ -161,6 +168,49 @@ public class VideojuegoDao {
 			videojuegos.stream().filter(x -> x.getAno() >= 1901 & x.getAno() <= 2000)
 					.forEach(x -> videojuegosSigloXX.add(x));
 			return videojuegosSigloXX;
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
+	}
+
+	// ********** JUEGOS AÑOS PARES
+	@SuppressWarnings("unchecked")
+	public List<Videojuego> listarJuegosAPares() {
+		List<Videojuego> videojuegos = new ArrayList<Videojuego>();
+		videojuegos = leerFichero();
+		List<Videojuego> videojuegosAPares = new ArrayList<Videojuego>();
+		try {
+			videojuegos.stream().filter(x -> x.getAno() % 2 == 0).forEach(x -> videojuegosAPares.add(x));
+			return videojuegosAPares;
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
+	}
+
+	// Listado de editores
+	public Set<String> listarEditores() {
+		List<Videojuego> videojuegos = new ArrayList<Videojuego>();
+		videojuegos = leerFichero();
+		Set<String> editores = new HashSet<String>();
+		try {// Set para guardar todos los editores sin repetir
+			editores = videojuegos.stream().map(Videojuego::getEditor).collect(Collectors.toSet());
+			return editores;
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
+	}
+
+	// Listado de editores
+	public Set<String> listarGeneros() {
+		List<Videojuego> videojuegos = new ArrayList<Videojuego>();
+		videojuegos = leerFichero();
+		Set<String> generos = new HashSet<String>();
+		try {// Set para guardar todos los editores sin repetir
+			generos = videojuegos.stream().map(Videojuego::getGenero).collect(Collectors.toSet());
+			return generos;
 		} catch (Exception e) {
 			System.out.println(e);
 			return null;
@@ -235,20 +285,20 @@ public class VideojuegoDao {
 		}
 
 	}
-	
+
 	public boolean editarVideojuego(Videojuego videojuego) {
 
 		try {
 			List<Videojuego> videojuegos = new ArrayList<Videojuego>();
 			videojuegos = leerFichero();
-			
+
 			for (int i = 0; i < videojuegos.size(); i++) {
 				if (videojuegos.get(i).getRank() == videojuego.getRank()) {
 					videojuegos.set(i, videojuego);
 					break;
 				}
 			}
-			
+
 			Videojuegos = videojuegos;
 
 			guardarFichero();
@@ -256,6 +306,6 @@ public class VideojuegoDao {
 		} catch (Exception e) {
 			return false;
 		}
-		
+
 	}
 }

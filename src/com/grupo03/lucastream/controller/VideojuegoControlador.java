@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 import com.grupo03.lucastream.model.Videojuego;
 import com.grupo03.lucastream.service.VideojuegoService;
@@ -104,18 +105,31 @@ public class VideojuegoControlador {
 
 	}
 
+	public static void opcionGenero(Scanner sc, VideojuegoService videojuegoService) {
+		System.out.println("Introduce un genero: ");
+		Set<String> setGeneros= videojuegoService.listarGeneros();
+		for (String generos : setGeneros) {
+			System.out.println(generos);
+		}
+		String genero=sc.next();
+		List<Videojuego> lista = videojuegoService.listarPorGenero(genero);
+		for (Videojuego videojuego : lista) {
+			System.out.println(videojuego);
+		}
+	}
+	
 	public static boolean borrarVideojuego(int rank, VideojuegoService videojuegoService) {
 		return videojuegoService.borrarVideojuego(rank);
 	}
 
 	public static void menu(VideojuegoService videojuegoService) {
-		
+
 		List<Videojuego> lista = new ArrayList<Videojuego>();
-		
+
 		boolean seguir = true;
-		int opcion=0;
-		Scanner sc = new Scanner (System.in);
-		while(seguir) {
+		int opcion = 0;
+		Scanner sc = new Scanner(System.in);
+		while (seguir) {
 			System.out.println("Elige una opción:");
 			System.out.println("1-- Listar todos los videojuegos");
 			System.out.println("2-- Añadir un nuevo videojuego ");
@@ -124,62 +138,78 @@ public class VideojuegoControlador {
 			System.out.println("5-- Informe de videojuegos del siglo XX");
 			System.out.println("6-- Editar un videojuego");
 			System.out.println("7-- Eliminar un videojuego");
+			System.out.println("8-- Informe de videojuegos con años pares");
+			System.out.println("9-- Informe de videojuegos por todos los generos");
+			System.out.println("10-- Informe de editores");
 			System.out.println("0-- Salir del programa ");
 			opcion = sc.nextInt();
-			switch(opcion) {
-				
-				case 0:
-					seguir = false;
-					break;
-				case 1:
-					  try {
-						  lista = videojuegoService.listarVideojuegos();
-						  for (Videojuego videojuego : lista) {
-								System.out.println(videojuego);
-							}
-						} catch (Exception e) {
-							System.out.println(e);
-							System.out.println("Se ha producido un error... - Controller");
-						}
-				    break;
-				case 2:
-					altaOption(sc, videojuegoService);
-					break;
-				case 3:
-					lista = videojuegoService.listarPorGenero("Platform");
+			switch (opcion) {
+
+			case 0:
+				seguir = false;
+				break;
+			case 1:
+				try {
+					lista = videojuegoService.listarVideojuegos();
 					for (Videojuego videojuego : lista) {
 						System.out.println(videojuego);
 					}
-					break;
-				case 4:
-					lista = videojuegoService.listarPorEditor("Nintendo");
-					for (Videojuego videojuego : lista) {
-						System.out.println(videojuego);
-					}
-					break;
-				case 5:
-					lista = videojuegoService.listarJuegosSigloXX();
-					for (Videojuego videojuego : lista) {
-						System.out.println(videojuego);
-					}
-					break;
-				case 6:
-					if (editarVideojuego(sc, videojuegoService)) {
-						System.out.println("Editado correctamente.");
-					} else {
-						System.out.println("No se pudo editar.");
-					}
-					
-					break;
-				case 7:
-					
-					deleteOption(sc, videojuegoService);
-					
-					break;
-				default: 
-					System.out.println("Opcion incorrecta. Marca una nueva opcion.");	
+				} catch (Exception e) {
+					System.out.println(e);
+					System.out.println("Se ha producido un error... - Controller");
+				}
+				break;
+			case 2:
+				altaOption(sc, videojuegoService);
+				break;
+			case 3:
+				lista = videojuegoService.listarPorGenero("Platform");
+				for (Videojuego videojuego : lista) {
+					System.out.println(videojuego);
+				}
+				break;
+			case 4:
+				lista = videojuegoService.listarPorEditor("Nintendo");
+				for (Videojuego videojuego : lista) {
+					System.out.println(videojuego);
+				}
+				break;
+			case 5:
+				lista = videojuegoService.listarJuegosSigloXX();
+				for (Videojuego videojuego : lista) {
+					System.out.println(videojuego);
+				}
+				break;
+			case 6:
+				if (editarVideojuego(sc, videojuegoService)) {
+					System.out.println("Editado correctamente.");
+				} else {
+					System.out.println("No se pudo editar.");
+				}
+
+				break;
+			case 7:
+				deleteOption(sc, videojuegoService);
+				break;
+			case 8:
+				lista = videojuegoService.listarJuegosAPares();
+				for (Videojuego videojuego : lista) {
+					System.out.println(videojuego);
+				}
+				break;
+			case 9:
+				opcionGenero(sc, videojuegoService);
+				break;
+			case 10:
+				Set<String> setEditores = videojuegoService.listarEditores();
+				for (String editores : setEditores) {
+					System.out.println(editores);
+				}
+				break;
+			default:
+				System.out.println("Opcion incorrecta. Marca una nueva opcion.");
 			}
-			
+
 		}
 		System.out.println("Fin de programa. ¡Hasta pronto!");
 	}
@@ -187,7 +217,7 @@ public class VideojuegoControlador {
 	public static void main(String[] args) {
 
 		VideojuegoService videojuegoService = new VideojuegoService();
-		
+
 		menu(videojuegoService);
 	}
 
