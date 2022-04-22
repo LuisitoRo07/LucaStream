@@ -27,7 +27,7 @@ public class VideojuegoTest03 {
 	}
 
 	@Test
-	public void testLeer() {
+	public void testComprobarLecturaFichero() {
 		System.out.println("Probando test leer");
 		// GIVEN
 		
@@ -39,7 +39,7 @@ public class VideojuegoTest03 {
 	}
 
 	@Test
-	public void testListar() {
+	public void testComprobarListarVideojuegos() {
 		System.out.println("Test de listar");
 		// GIVEN
 		
@@ -51,7 +51,7 @@ public class VideojuegoTest03 {
 	}
 
 	@Test
-	public void testGeneroPlat() {
+	public void testComprobarGeneroPlatform() {
 		System.out.println("Test informe genero platform");
 		// GIVEN
 		Videojuego esp = new Videojuego(2, "Super Mario Bros.", "NES", 1985, "Platform", "Nintendo");
@@ -62,7 +62,7 @@ public class VideojuegoTest03 {
 	}
 
 	@Test
-	public void testEditorNintendo() {
+	public void testComprobarEditorNintendo() {
 		System.out.println("Test informe editor Nintendo");
 		// GIVEN
 		Videojuego esp = new Videojuego(1, "Wii Sports", "Wii", 2006, "Sports", "Nintendo");
@@ -73,7 +73,7 @@ public class VideojuegoTest03 {
 	}
 
 	@Test
-	public void testJuegoSigloXX() {
+	public void testComprobarJuegoSigloXX() {
 		System.out.println("Test informe siglo XX");
 		// GIVEN
 		Videojuego esp = new Videojuego(2, "Super Mario Bros.", "NES", 1985, "Platform", "Nintendo");
@@ -84,7 +84,7 @@ public class VideojuegoTest03 {
 	}
 
 	@Test
-	public void testJuegosAPares() {
+	public void testComprobarJuegosAPares() {
 		System.out.println("Test informe A�os Pares");
 		// GIVEN
 		Videojuego esp = new Videojuego(1, "Wii Sports", "Wii", 2006, "Sports", "Nintendo");
@@ -127,7 +127,7 @@ public class VideojuegoTest03 {
 	}
 
 	@Test
-	public void testAnadir() {
+	public void testComprobarAnadir() {
 		System.out.println("Probando test a�adir");
 
 		// GIVEN
@@ -152,7 +152,7 @@ public class VideojuegoTest03 {
 	}
 
 	@Test
-	public void testEdicionyBorrado() {
+	public void testComprobarEdicionyBorrado() {
 		System.out.println("Probando test edicion y borrado");
 		// GIVEN
 		// Creamos un nuevo objeto Videojuego
@@ -198,7 +198,7 @@ public class VideojuegoTest03 {
 	}
 
 	@Test
-	public void testRescrituraFichero() {
+	public void testComprobarRescrituraFichero() {
 		System.out.println("Probando test reescritura");
 		// GIVEN
 
