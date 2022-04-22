@@ -21,7 +21,7 @@
 	<archive>
 	<index>true</index>
 	<manifest>
-	<mainClass>com.lucasteam.controller.Main</mainClass>
+	<mainClass>src/com.grupo03.lucastream.Main</mainClass>
 	</manifest>
 	</archive>
 	</configuration>
